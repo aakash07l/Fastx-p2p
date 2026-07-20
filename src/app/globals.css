@@ -1,0 +1,240 @@
+@import "tailwindcss";
+
+:root {
+  /* FastX P2P Light Theme */
+  --background: #ffffff;
+  --background-2: #e8e8f8;
+  --foreground: #1e1b4b;
+  --primary: #125fe8;
+  --primary-hover: #0952d2;
+  --primary-light: #edf5ff;
+  --primary-glow: rgba(18, 95, 232, 0.15);
+  --surface: #ffffff;
+  --surface-hover: #f8f8ff;
+  --surface-2: #f1f2ff;
+  --border: #e5e7eb;
+  --border-strong: #d1d5db;
+  --muted: #6b7280;
+  --muted-light: #9ca3af;
+  --success: #059669;
+  --success-light: #d1fae5;
+  --danger: #dc2626;
+  --danger-light: #fee2e2;
+  --warning: #d97706;
+  --warning-light: #fef3c7;
+  --sidebar-width: 256px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  min-height: 100vh;
+  letter-spacing: -0.035em;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.app-header {
+  position: fixed;
+  z-index: 40;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  height: 88px;
+  align-items: center;
+  padding: 0 24px;
+  background: rgba(255,255,255,.97);
+  border-bottom: 1px solid #ece9f1;
+  box-shadow: 0 5px 13px rgba(80, 54, 183, .06);
+}
+
+.app-subheader { height: 96px; }
+.app-main { width: 100%; max-width: 560px; min-height: 100vh; margin: 0 auto; padding: 124px 35px 40px; }
+.icon-button { display: flex; width: 48px; height: 48px; align-items: center; justify-content: center; border: 1px solid #eceaf0; border-radius: 15px; color: #19171d; background: white; box-shadow: 0 2px 4px rgba(26, 20, 45, .03); transition: background .15s ease, transform .15s ease; }
+.icon-button:hover { background: #f7f5ff; }
+.icon-button:active { transform: scale(.96); }
+.drawer-item { display: flex; align-items: center; gap: 24px; padding: 17px 0; color: #17161c; font-size: 21px; font-weight: 600; letter-spacing: -.04em; }
+.trade-dock { position: fixed; z-index: 35; bottom: 0; left: 0; right: 0; height: 112px; padding-top: 26px; background: rgba(255,255,255,.97); box-shadow: 0 -5px 18px rgba(74, 48, 172, .08); }
+.dock-trade { display: flex; min-width: 155px; align-items: center; justify-content: center; gap: 8px; border-radius: 13px; padding: 15px 13px; color: white; font-size: 17px; font-weight: 700; box-shadow: 0 4px 12px rgba(54, 42, 158, .16); }
+.dock-buy { background: linear-gradient(135deg, #5343f5, #4744ed); }
+.dock-sell { background: #171717; }
+@keyframes drawerIn { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+
+@media (min-width: 700px) {
+  .app-header { max-width: 560px; margin: 0 auto; border-left: 1px solid #ece9f1; border-right: 1px solid #ece9f1; }
+  .app-main { border-left: 1px solid #f1eff4; border-right: 1px solid #f1eff4; }
+}
+
+@media (max-width: 420px) {
+  .app-main { padding-left: 24px; padding-right: 24px; }
+  .app-header { padding-left: 20px; padding-right: 20px; }
+  .dock-trade { min-width: 0; flex: 1; font-size: 15px; }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* === p2p.lol Card Style === */
+.p2p-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.06), 0 2px 12px 0 rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  position: relative;
+}
+
+.p2p-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08), 0 4px 20px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* Keep .cyber-card as alias for compatibility */
+.cyber-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.06), 0 2px 12px 0 rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  position: relative;
+}
+
+.cyber-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08), 0 4px 20px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* === p2p.lol Indigo Gradient Text === */
+.gradient-text {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+}
+
+/* === Buttons === */
+.p2p-btn-primary {
+  background: var(--primary);
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  letter-spacing: -0.01em;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25);
+  transition: all 0.15s ease;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.p2p-btn-primary:hover:not(:disabled) {
+  background: var(--primary-hover);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+  transform: translateY(-1px);
+}
+
+.p2p-btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.p2p-btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Form Inputs — p2p.lol style */
+.p2p-input {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  color: var(--foreground);
+  transition: all 0.15s ease;
+  font-family: inherit;
+  font-size: 0.9rem;
+  padding: 10px 14px;
+}
+
+.p2p-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.p2p-input::placeholder {
+  color: var(--muted-light);
+}
+
+/* === Active Nav Pill === */
+.active-nav-pill {
+  background: var(--primary-light);
+}
+
+/* === Status Badge Colors (light) === */
+.badge-success { background: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; }
+.badge-warning { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+.badge-danger  { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+.badge-info    { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+
+/* Pulse animation */
+.pulse-dot {
+  animation: pulseDot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Slide up animation */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Card hover utility */
+.card-hover {
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card-hover:hover {
+  border-color: var(--border-strong);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Mobile-first adjustments */
+@media (max-width: 640px) {
+  .p2p-card, .cyber-card {
+    border-radius: 14px;
+  }
+}
